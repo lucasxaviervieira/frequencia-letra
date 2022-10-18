@@ -66,18 +66,17 @@ def main():
 
     adress = "lusiadas-pt.txt"
     encode = "ISO 8859-1"
+    url = "https://www.gutenberg.org/files/3333/3333-8.txt"
+    read_archive(url, adress)
     frenquency_letter_pt = frequency_letters(adress, encode)
 
     adress = "lusiadas-es.txt"
     encode = "UTF-8"
+    url = "https://www.gutenberg.org/files/64775/64775-0.txt"
+    read_archive(url, adress)
     frenquency_letter_esp = frequency_letters(adress, encode)
-    compare_common_letters(frenquency_letter_pt, frenquency_letter_esp)
-
-    # url = "https://www.gutenberg.org/files/3333/3333-8.txt"
-    # read_archive(url, adress)
-    # url = "https://www.gutenberg.org/files/64775/64775-0.txt"
-    # read_archive(url, adress)
-
+    
+    compare_common_letters(frenquency_letter_pt, frenquency_letter_esp) 
 
 if __name__ == "__main__":
     main()
