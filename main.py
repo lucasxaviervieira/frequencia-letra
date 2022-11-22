@@ -43,14 +43,22 @@ def compare_common_letters(fr_ltr, fr_ltr_2):
     labels, values = zip(*sliced_fr_ltr)
     _, values_2 = zip(*sliced_fr_ltr_2)
 
+    return (labels, values, values_2)
+
+
+def create_graphic(frequency_1, frequency_2):
+
+    list = compare_common_letters(frequency_1, frequency_2)
+    labels, values, values_2 = list[0], list[1], list[2]
+
     plt.figure(figsize=(10, 5))
     bar_width = 0.25
 
     r1 = np.arange(len(values))
     r2 = [x + bar_width for x in r1]
 
-    bar_pt = plt.bar(r1, values, color="b", width=bar_width, label="Português")
-    bar_es = plt.bar(r2, values_2, color="r", width=bar_width, label="Espanhol")
+    plt.bar(r1, values, color="b", width=bar_width, label="Português")
+    plt.bar(r2, values_2, color="r", width=bar_width, label="Espanhol")
 
     plt.xticks([r + bar_width for r in range(len(values))], labels)
     plt.xlabel("Letras")
@@ -65,18 +73,19 @@ def compare_common_letters(fr_ltr, fr_ltr_2):
 def main():
 
     adress = "lusiadas-pt.txt"
-    encode = "ISO 8859-1"
     url = "https://www.gutenberg.org/files/3333/3333-8.txt"
+    encode = "ISO 8859-1"
     read_archive(url, adress)
     frenquency_letter_pt = frequency_letters(adress, encode)
 
     adress = "lusiadas-es.txt"
-    encode = "UTF-8"
     url = "https://www.gutenberg.org/files/64775/64775-0.txt"
+    encode = "UTF-8"
     read_archive(url, adress)
     frenquency_letter_esp = frequency_letters(adress, encode)
-    
-    compare_common_letters(frenquency_letter_pt, frenquency_letter_esp) 
+
+    create_graphic(frenquency_letter_pt, frenquency_letter_esp)
+
 
 if __name__ == "__main__":
     main()
